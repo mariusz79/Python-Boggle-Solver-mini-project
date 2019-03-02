@@ -1,14 +1,16 @@
 from string import ascii_uppercase
 from random import choice
 
+
 def make_grid(width, height):
     """
     Creates a grid that will hold all of the tiles
     for a boggle game
     """
     return {(row, col): choice(ascii_uppercase)
-        for row in range(height)
-        for col in range(width)}
+            for row in range(height)
+            for col in range(width)}
+
 
 def neighbours_of_position(coords):
     """
@@ -60,7 +62,7 @@ def path_to_word(grid, path):
 
 def search(grid, dictionary):
     """
-    Search through the paths to locate words by matching
+    Search thrugh the paths to locate words by matching
     strings to words in a dictionary
     """
     neighbours = all_grid_neighbours(grid)
@@ -87,5 +89,21 @@ def get_dictionary(dictionary_file):
     """
     Load dictionary file
     """
-    with open(dictionary_file) as f:
+    with open(dictionary_file, encoding="Latin-1") as f:
         return [w.strip().upper() for w in f]
+
+
+def main():
+    """
+    This is the function that will run the whole project
+    """
+    grid = make_grid(3, 3)
+    dictionary = get_dictionary('words.txt')
+    words = search(grid, dictionary)
+    for word in words:
+        print(word)
+    print("Found %s words" % len(words))
+
+
+if __name__ == "__main__":
+    main()
