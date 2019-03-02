@@ -20,6 +20,19 @@ class TestBoggle(unittest.TestCase):
         grid = boggle.make_grid(2, 3)
         self.assertEqual(len(grid), 2*3)
 
+    def test_grid_coordinates(self):
+        """
+        Test to ensure that all coordinates inside 
+        of the grip can be accessed
+        """
+        grid = boggle.make_grid(2, 2)
+        self.assertIn((0, 0), grid)
+        self.assertIn((0, 1), grid)
+        self.assertIn((1, 0), grid)
+        self.assertIn((1, 1), grid)
+        self.assertNotIn((2, 2), grid)
+
+
 #code below is used in vscode editor to run test
 if __name__ == '__main__':
     unittest.main()
